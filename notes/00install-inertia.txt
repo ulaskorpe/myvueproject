@@ -1,0 +1,21 @@
+serverside ::
+1. welcome.blade -> app.blade
+2.   @routes
+  @vite('resources/js/app.js')
+  @inertiaHead
+
+3. add middleware to bootstrap/app.php
+
+   ->withMiddleware(function (Middleware $middleware) {
+        $middleware->web(append: [
+            HandleInertiaRequests::class,
+        ]);
+    })
+
+client side
+4 . npm install @inertiajs/vue3
+https://inertiajs.com/client-side-setup
+js/app.js  fill
+
+
+https://inertiajs.com/upgrade-guide

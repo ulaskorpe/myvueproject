@@ -1,0 +1,10 @@
+https://www.fadocodecamp.com/posts
+
+https://github.com/piotr-jura-udemy/master-laravel-vue-fullstack
+
+https://herd.laravel.com/windows
+
+
+https://code.visualstudio.com/
+
+https://inertiajs.com/upgrade-guide

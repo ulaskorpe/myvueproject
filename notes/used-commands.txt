@@ -1,0 +1,13 @@
+php artisan key:generate
+sudo update-alternatives --config php
+composer create-project laravel/laravel:^11.0 mylaravelapp
+php -i | grep "keyword"
+sudo systemctl restart nginx
+npm install --save-dev @vitejs/plugin-vue
+composer require inertiajs/inertia-laravel
+
+
+laravel using vite as default packer
+
+
+composer require barryvdh/laravel-debugbar --dev

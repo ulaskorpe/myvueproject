@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    ports:
+      - "192.168.1.100:3307:3306" # Bind MySQL to local IP and port
+    environment:
+      MYSQL_ROOT_PASSWORD: secret # Set the root password
+      MYSQL_DATABASE: jot_db           # Create an initial database
+      MYSQL_USER: homestead             # Create a user
+      MYSQL_PASSWORD: example_user_password # Password for the user
+    volumes:
+      - "C:/data/mysql_data:/var/lib/mysql" # Bind the host directory to the container
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_container
+    restart: always
+    ports:
+      - "192.168.1.100:8080:80" # Bind phpMyAdmin to local IP and port
+    environment:
+      PMA_HOST: mysql # MySQL container name
+      PMA_PORT: 3306  # MySQL port
+    depends_on:
+      - mysql

@@ -1,0 +1,11 @@
+import MainLayout from '../Layout/MainLayout.vue'
+export default {
+    layout: MainLayout
+}
+
+//// basic usage in EACH page
+
+app.js >> every page same layout ::
+import MainLayout from './Layouts/MainLayout.vue'
+    page.default.layout = page.default.layout || MainLayout   //// sayfada layout tanımanmamışsa
+    return page
