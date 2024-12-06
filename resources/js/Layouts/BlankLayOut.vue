@@ -1,5 +1,5 @@
 <template>
-
+<h1>THIS IS THE WAY</h1>
     <slot>default</slot>
     </template>
 

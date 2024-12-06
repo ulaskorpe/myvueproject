@@ -21,11 +21,11 @@ Route::get('/myself', [IndexController::class, 'myself']);
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/hello', [IndexController::class, 'show']);
-Route::get('/mylist', [ListingController::class, 'mylist']);
+Route::get('/mylist', [ListingController::class, 'mylist'])->name('mylist');
   //  ->middleware('auth');
 
 Route::resource('listing', ListingController::class)
-->only(['index', 'show', 'create' ]);
+->only(['index', 'show', 'create' ,'store']);
 
 
 

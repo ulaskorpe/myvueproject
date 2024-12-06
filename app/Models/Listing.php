@@ -14,7 +14,7 @@ class Listing extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'beds', 'baths', 'area', 'city', 'code', 'street', 'street_nr', 'price'
+        'beds', 'baths', 'area', 'city', 'code', 'street', 'street_nr', 'price','by_user_id'
     ];
     protected $sortable = [
         'price', 'created_at'

@@ -53,15 +53,15 @@ class ListingController extends Controller
 
 
     public function mylist(){
-        return Inertia::render('Dev/Listing');
+        return Inertia::render('Dev/Listing',['listings'=>Listing::all()]);
     }
 
     public function show(Listing $listing): Response
     {
-        Gate::authorize(
-            'view',
-            $listing
-        );
+        // Gate::authorize(
+        //     'view',
+        //     $listing
+        // );
         $listing->load(['images']);
         $offer = !Auth::user() ?
             null : $listing->offers()->byMe()->first();
@@ -77,7 +77,18 @@ class ListingController extends Controller
 
     public function create()
     {
-        //
-        return inertia('Listing/Create');
+       $fields= [
+        'beds', 'baths', 'area', 'city', 'code', 'street', 'street_nr', 'price'
+    ];
+     //  $fields = (new Listing())->getFillable();
+
+        return inertia('Dev/Create',['fields'=>$fields]);
+    }
+
+    public function store(Request $request){
+      //  dd($request->all());
+
+        Listing::create($request->all());
+        return redirect()->route('mylist')->with('success','Listing  created');
     }
 }

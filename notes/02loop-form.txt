@@ -1,0 +1,13 @@
+<div v-for="listing in listings" v-bind:key="listing.id">
+<div v-for="(listing,index) in listings" v-bind:key="listing.id">
+
+    <Link :href="`/${listing.id}`">
+    {{ listing.city }} - {{ listing.street }} :: {{ listing.id }} <br>
+
+    yada
+
+    <ListingAddress :listing="listing" />
+</Link>
+
+
+
