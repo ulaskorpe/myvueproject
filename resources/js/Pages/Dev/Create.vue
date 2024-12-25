@@ -2,34 +2,39 @@
     <div class="d-flex justify-content-center align-items-center ">
       <div class="card p-4 shadow-lg" style="width: 700px;">
         <div class="card-body">
-          <h5 class="card-title text-center mb-4">Create new </h5>
-          <Link :href="`/mylist`" > BACKTOWAR </Link><br>
-          <button @click="showAlert" class="btn btn-primary">Show Alert</button>
-        <form @submit.prevent="create">
-            <input
-              :id="by_user_id"
-              v-model="by_user_id"
-              class="form-control"
+          <h5 class="card-title text-center mb-4">Create new</h5>
+          <Link :href="`/mylist`">BACKTOWAR</Link><br>
 
-              type="hidden"
-              value="1"
-            />
-          <div v-for="(field, index) in fields" :key="index" class="mb-3">
-            <label :for="field" class="form-label"># {{index+1}}. {{ field }}</label>
-            <input
-              :id="field"
-              v-model="form[field]"
-              class="form-control"
-              :placeholder="'Enter ' + field"
-              type="text"
-            />
-          </div>
-          <button type="submit" class="btn btn-primary" @click="create">Create</button>
-        </form>
+          <form @submit.prevent="create">
+            <div v-for="(field, index) in fields" :key="index" class="mb-3">
+              <!-- Label -->
+              <label :for="field.name" v-if="field.type !== 'hidden'" class="form-label">
+                # {{ index + 1 }}. {{ field.name }}
+              </label>
+
+              <!-- Input Field -->
+              <input
+                :id="field.name"
+                v-model="form[field.name]"
+                class="form-control"
+                :placeholder="'Enter ' + field.name"
+                :type="field.type"
+                v-show="field.type !== 'hidden'"
+              />
+
+              <!-- Error Message -->
+              <div v-if="form.errors[field.name]" class="text-danger">
+                {{ form.errors[field.name] }}
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create</button>
+          </form>
+        </div>
       </div>
-  </div>
-  </div>
-    </template>
+    </div>
+  </template>
+
   <style scoped>
   label {
     margin-right: 1em;
@@ -41,10 +46,12 @@
   </style>
   <script setup>
   import { Link } from '@inertiajs/vue3';
-  import { reactive } from 'vue';
-  import { Inertia   } from '@inertiajs/inertia';
-  import { useForm   } from '@inertiajs/inertia-vue3';
-  //const form = reactive({
+//  import { reactive } from 'vue';
+  import { Inertia } from '@inertiajs/inertia';
+
+  import { useForm } from '@inertiajs/inertia-vue3';
+
+  // const form = reactive({
   const form = useForm({
       beds:0,
       baths:0,
@@ -54,14 +61,22 @@
       street : null,
       street_nr : null,
       price : 0,
-      by_user_id:"1"
+      by_user_id : 1
+
   })
 
 
- // const create  = () =>Inertia.post('/listing',form)
 
- const create = () => form.post('/listing')
-  //const x = form.beds
+
+//const create = ()=>Inertia.post('/listing',form);
+
+const create = () => {
+
+
+  console.log('Form Errors:', form.errors); // Log the errors to see if they're populated
+
+  form.post('/listing');
+};
   </script>
 
     <script>
@@ -77,14 +92,14 @@
           required: true, // Ensures this prop is passed
         },
       },
-      data() {
-        return {
-          form: this.fields.reduce((acc, field) => {
-            acc[field] = ""; // Initialize each field with an empty string
-            return acc;
-          }, {}),
-        };
-      },
+    //   data() {
+    //     return {
+    //       form: this.fields.reduce((acc, field) => {
+    //         acc[field] = ""; // Initialize each field with an empty string
+    //         return acc;
+    //       }, {}),
+    //     };
+    //   },
       methods: {
           showAlert() {
           Swal.fire({

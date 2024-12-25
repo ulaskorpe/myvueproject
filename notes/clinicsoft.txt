@@ -1,0 +1,3 @@
+https://clinicsoft.io:2083
+User: clinicsoft
+Pass: Clinic_Soft2024*

@@ -21,7 +21,7 @@
 I am Piotr Jura, a seasoned web developer and a passionate Udemy instructor. With years of experience in JavaScript, TypeScript, Node, PHP, MySQL, Vue, React, and more, I bring practical, real-world knowledge to my students.
 
 ## Courses
-
+https://www.udemy.com/course/master-laravel-6-with-vuejs-fullstack-development/learn/lecture/34944244#questions
 See [Fado Code Camp](https://fadocodecamp.com/courses) for all my courses.
 
 ## Contact and Links

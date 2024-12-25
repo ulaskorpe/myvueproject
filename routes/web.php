@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleDriveController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserAccountController;
@@ -14,7 +15,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\RealtorListingAcceptOfferController;
 
 
-
+Route::middleware(['inertia'])->group(function () {
+});
 
 Route::get('/letsgo', [IndexController::class, 'letsgo']);
 Route::get('/myself', [IndexController::class, 'myself']);
@@ -24,9 +26,17 @@ Route::get('/hello', [IndexController::class, 'show']);
 Route::get('/mylist', [ListingController::class, 'mylist'])->name('mylist');
   //  ->middleware('auth');
 
-Route::resource('listing', ListingController::class)
-->only(['index', 'show', 'create' ,'store']);
+Route::resource('listing', ListingController::class);
+//->only(['index', 'show', 'create' ,'store','update','edit']);
+//->except(['not belong here'])
 
+
+
+
+Route::get('/upload-form',[GoogleDriveController::class,'upload_form'])->name('upload-form');
+Route::get('/show/{file}',[GoogleDriveController::class,'show'])->name('show-file');
+Route::get('/list-files/{delete_id?}',[GoogleDriveController::class,'list_files'])->name('list-files');
+Route::post('/upload-form',[GoogleDriveController::class,'upload_form_post'])->name('upload-form-post');
 
 
 Route::resource('listing.offer', ListingOfferController::class)

@@ -2,9 +2,10 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import '../css/app.css'
 import MainLayout from './Layouts/MainLayout.vue'
-import { ZiggyVue } from 'ziggy-js';
+import { ZiggyVue } from 'ziggy'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import '../css/app.css';
 
 
 createInertiaApp({

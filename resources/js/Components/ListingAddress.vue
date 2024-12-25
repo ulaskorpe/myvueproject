@@ -6,7 +6,7 @@
       <br>
       Price :
       {{ listing.price }}
-      <hr>
+
   </span>
 </template>
 
